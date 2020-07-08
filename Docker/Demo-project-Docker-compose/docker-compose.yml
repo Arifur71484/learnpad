@@ -1,0 +1,46 @@
+version: '3'
+
+
+networks:
+  app-tier:
+    driver: bridge
+
+
+services: 
+      
+      
+      stringapp:
+        build: ./stringapp
+        volumes: 
+          - ./stringapp:/app/dist/stringapp
+        ports: 
+          - ${str_port}:80  
+        networks:
+            - app-tier  
+        depends_on: 
+         - rabbitmq
+
+      speacialstring:
+        build: ./speacialstring
+        volumes: 
+          - ./speacialstring:/app/dist/speacialstring
+        ports: 
+          - ${spec_port}:80
+        networks:
+            - app-tier  
+        depends_on: 
+          - stringapp    
+          - rabbitmq
+
+
+      rabbitmq:
+        build: ./rabbitDokcer
+        networks:
+          - app-tier
+   
+         
+
+            
+
+
+       

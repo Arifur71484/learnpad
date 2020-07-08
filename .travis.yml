@@ -1,0 +1,31 @@
+# dist: trusty
+dist: bionic
+language: java
+script: bash build --debug
+# We need to avoid sudo for caching on Travis
+# http://docs.travis-ci.com/user/caching/
+sudo: false
+
+addons:
+    apt:
+        packages:
+            - curl
+            - gcc
+            - make
+            - maven
+            - nodejs
+            - openjdk-11-jdk
+            - openjdk-11-jre
+            - build-essential
+            - sed
+
+cache:
+    directories:
+        - $HOME/.m2
+
+before_script:
+    - export MAVEN_SKIP_RC=true
+    - export MAVEN_OPTS="-Xms1024m -Xmx2g -XX:MaxPermSize=512m"
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

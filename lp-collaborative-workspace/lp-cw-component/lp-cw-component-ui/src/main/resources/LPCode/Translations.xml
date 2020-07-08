@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc version="1.2" reference="LPCode.Translations" locale="">
+  <web>LPCode</web>
+  <name>Translations</name>
+  <language/>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1443000449000</creationDate>
+  <parent>LPUI.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1465231011000</date>
+  <contentUpdateDate>1465231011000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Translations</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content>## UI pages
+# LPUI.WebHome
+LPUI.WebHome.title=Courses
+LPUI.WebHome.button.start=Start
+LPUI.WebHome.button.simulate=Simulate
+LPUI.WebHome.lastupdate=Last update {0}
+LPUI.WebHome.knowmore=[Know more]
+LPUI.WebHome.presentation.introduction=Welcome! The European project Learn PAd (Model Based Social Learning for Public Administrations) is funded by the European Commission under the Seventh Programme Framework for Research and Development (FP7).
+LPUI.WebHome.presentation.content=You are using the collaborative platform released for online “training on the job“ sessions of the PA staff. The platform provides a set of innovative and social features for interaction and simulation, and it is based on use cases and practical methods derived from the formal modeling of business processes, which can be browsed within a Wiki Knowledge Repository. Executing any given task or functionality, the system will assign you an (improvable) score, according to the required and achieved skills and expertize level (related to the EQF competencies framework).
+LPUI.WebHome.presentation.conclusion=Select your course and start playing with us!
+
+# LPUI.ModelSetSheet
+LPUI.ModelSetSheet.button.contribute=Contributions
+LPUI.ModelSetSheet.button.start=Start
+LPUI.ModelSetSheet.button.simulate=Simulate
+LPUI.ModelSetSheet.lastupdate=Last update {0}
+LPUI.ModelSetSheet.knowmore=[Know more]
+
+# LPUI.ModelSheet
+LPUI.ModelSheet.button.browse=Browse
+LPUI.ModelSheet.button.contribute=Contributions
+LPUI.ModelSheet.button.simulate=Simulate
+
+# BaseElementSheet
+LPUI.BaseElementSheet.button.contribute=Contributions
+BaseElementSheet.documentation.title=Description of the activity
+BaseElementSheet.organization.title=Organization
+BaseElementSheet.feedback.helper=If you think the content of this page has errors, please fill a note that will be sent to the responsible of this process.
+
+# FeedbackSheet
+FeedbackSheet.title=Feedback on "{0}"
+FeedbackSheet.goback=Go back to the artifact
+
+# CollaborativeDocumentSheet
+LPUI.CollaborativeDocumentSheet.title=Collaborative Document on "{0}"
+LPUI.CollaborativeDocumentSheet.button.edit=Edit
+LPUI.CollaborativeDocumentSheet.button.validate=Validate
+
+# Profile panel
+LPUI.ProfilePanel.title=My Account
+LPUI.ProfilePanel.profile=My profile
+LPUI.ProfilePanel.dashboard=My dashboard
+LPUI.ProfilePanel.join=Join
+LPUI.ProfilePanel.join.help=You have been invited into a simulation!
+
+# Recommendation panel
+LPUI.RecommendationPanel.role.title=Role
+LPUI.RecommendationPanel.experts.title=Experts
+LPUI.RecommendationPanel.simulation.title=Simulation
+LPUI.RecommendationPanel.simulation.button=Start
+LPUI.RecommendationPanel.learningmaterials.title=Learning Materials
+LPUI.RecommendationPanel.similarcases.title=Similar Cases
+LPUI.RecommendationPanel.similarcases.category.applicationCity=City
+LPUI.RecommendationPanel.similarcases.category.applicationATECOCategory=Category ATECO
+LPUI.RecommendationPanel.similarcases.category.applicationSubType=Subtype
+LPUI.RecommendationPanel.similarcases.category.applicationZone=Zone
+LPUI.RecommendationPanel.similarcases.category.involvedThirdParties=Involved 3rd parties
+LPUI.RecommendationPanel.similarcases.category.applicationPublicAdministration=Public Administration
+LPUI.RecommendationPanel.similarcases.category.applicationBusinessActivity=Business Activity
+LPUI.RecommendationPanel.similarcases.category.applicantName=Applicant Name
+LPUI.RecommendationPanel.similarcases.category.applicationSector=Sector
+
+# Simulation Environment
+SimulationEnvironment.goback=Go back to the browsing of the model
+LPUI.SimulationEnvironment.howto.label=Click here
+LPUI.SimulationEnvironment.howto.info=in order to see the correct answers expected by the Simulation Enviroment in each task
+LPUI.SimulationEnvironment.howto.warning.en=Only in English
+LPUI.SimulationEnvironment.howto.models=Documented Models and Cases
+
+# Dashboard
+LPUI.Dashboard.section.title=Score on the process "{0}"
+LPUI.Dashboard.calculate.button=Calculate KPIs
+LPUI.Dashboard.calculate.warning=This operation may take time, and the page must be reloded
+
+# LPDocs
+LPDocs.WebHome.title=How To!
+LPDocs.WebHome.welcome=Browse the following table and learn more about a topic
+LPDocs.Abstract.content=Learn more about a topic.
+LPDocs.Abstract.linkLabel=Click here
+LPDocs.Tours.title=Tours
+LPDocs.Tours.linkLabel=Learn with the Tour
+LPDocs.HelpDesk.title=Help Desk
+LPDocs.HelpDesk.content=For any further issue, please contact 
+LPDocs.HelpDesk.label=our Help Desk
+LPDocs.HelpDesk.mailSubject=\[support\]\ 
+
+# Tours
+LPTours.BrowsingMode.description=this is foo
+LPTours.BrowsingMode.Body.title=Body, this is foo
+LPTours.BrowsingMode.Body.description=Body, this is foo
+LPTours.BrowsingMode.StartButton.title=StartButton, this is foo
+LPTours.BrowsingMode.StartButton.description=StartButton, this is foo
+LPTours.BrowsingMode.BrowseButton.title=BrowseButton, this is foo
+LPTours.BrowsingMode.BrowseButton.description=BrowseButton, this is foo
+LPTours.BrowsingMode.ContributeButton.title=ContributeButton, this is foo
+LPTours.BrowsingMode.ContributeButton.description=ContributeButton, this is foo
+LPTours.BrowsingMode.FeedbackButton.title=FeedbackButton, this is foo
+LPTours.BrowsingMode.FeedbackButton.description=FeedbackButton, this is foo
+LPTours.BrowsingMode.Navigation.title=Navigation, this is foo
+LPTours.BrowsingMode.Navigation.description=Navigation, this is foo
+LPTours.BrowsingMode.Crosslink.title=Crosslink, this is foo
+LPTours.BrowsingMode.Crosslink.description=Crosslink, this is foo
+LPTours.BrowsingMode.Documents.title=Documents, this is foo
+LPTours.BrowsingMode.Documents.description=Documents, this is foo
+LPTours.BrowsingMode.Organization.title=Organization, this is foo
+LPTours.BrowsingMode.Organization.description=Organization, this is foo
+LPTours.BrowsingMode.DummyImage.title=Process DummyImage, this is foo
+LPTours.BrowsingMode.DummyImage.description=Process DummyImage, this is foo
+
+LPTours.BrowsingModeProcess.Body.title=Process Body, this is foo
+LPTours.BrowsingModeProcess.Body.description=Process Body, this is foo
+LPTours.BrowsingModeProcess.Table.title=Process Table, this is foo
+LPTours.BrowsingModeProcess.Table.description=Process Table, this is foo
+LPTours.BrowsingModeProcess.BrowseButton.title=Process BrowseButton, this is foo
+LPTours.BrowsingModeProcess.BrowseButton.description=Process BrowseButton, this is foo
+LPTours.BrowsingModeProcess.SimulationButton.title=Process SimulationButton, this is foo
+LPTours.BrowsingModeProcess.SimulationButton.description=Process SimulationButton, this is foo
+LPTours.BrowsingModeProcess.ContributeButton.title=Process ContributeButton, this is foo
+LPTours.BrowsingModeProcess.ContributeButton.description=Process ContributeButton, this is foo
+LPTours.BrowsingModeProcess.DummyImage.title=Process DummyImage, this is foo
+LPTours.BrowsingModeProcess.DummyImage.description=Process DummyImage, this is foo
+
+## Macros
+# Workflow buttons macro
+LPCode.WorkflowButtonsMacro.title=Navigate
+LPCode.WorkflowButtonsMacro.previous=Previous steps
+LPCode.WorkflowButtonsMacro.next=Next steps
+LPCode.WorkflowButtonsMacro.poollane=List of elements
+LPCode.WorkflowButtonsMacro.labelDenominationProperty=Branch :
+LPCode.WorkflowButtonsMacro.labelTriggerProperty=Event :
+
+# Organization macro
+LPCode.OrganizationMacro.title=Organization units
+OrganizationMacro.title.top=Part of
+OrganizationMacro.title.bottom=Element of
+
+# Weaving Button macro
+LPCode.WeavingMacro.title=Cross-model
+
+# FeedbackButtonMacro
+LPCode.FeedbackButtonMacro.button=Feedback
+
+# DocumentMacro
+LPCode.DocumentMacro.title=Documents
+
+# DocumentationMacro
+LPCode.DocumentationMacro.empty=There is no documentation for this artifact.
+
+# BaseElementDisplayCMMacro
+LPCode.BaseElementDisplayCMMacro.title=Competency
+LPCode.BaseElementDisplayCMMacro.level=Level
+LPCode.BaseElementDisplayCMMacro.competency=Competency
+LPCode.BaseElementDisplayCMMacro.skill=Skill
+LPCode.BaseElementDisplayCMMacro.knowledge=Knowledge
+
+## Livetables
+# Model sets livetable
+lpcode.livetable.modelset.emptyvalue=-
+lpcode.livetable.modelset.id=ID
+lpcode.livetable.modelset.name=Course name
+lpcode.livetable.modelset.doc.date=Last update
+lpcode.livetable.modelset._actions=Actions
+# Models livetable
+lpcode.livetable.model.emptyvalue=-
+lpcode.livetable.model.id=ID
+lpcode.livetable.model.name=Model name
+lpcode.livetable.model.type=Type
+lpcode.livetable.model.doc.date=Last update
+lpcode.livetable.model._actions=Actions
+# Docs livetable
+lpcode.livetable.docs.documenttitle=Title</content>
+  <object>
+    <name>LPCode.Translations</name>
+    <number>0</number>
+    <className>XWiki.TranslationDocumentClass</className>
+    <guid>7c5c156e-271c-46fa-9feb-19efb05d8e3f</guid>
+    <class>
+      <name>XWiki.TranslationDocumentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>1</number>
+        <prettyName>Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators>|, </separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <property>
+      <scope>GLOBAL</scope>
+    </property>
+  </object>
+</xwikidoc>

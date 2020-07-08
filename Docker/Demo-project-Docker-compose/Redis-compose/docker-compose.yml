@@ -1,0 +1,12 @@
+version: '3'
+
+services: 
+
+
+    web:
+      image: nginx
+      ports:
+        - 8787:80
+        
+    database:
+        image: redis    

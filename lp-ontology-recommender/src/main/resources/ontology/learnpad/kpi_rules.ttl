@@ -1,0 +1,1156 @@
+# baseURI: http://learnpad.eu/kpir
+# imports: http://learnpad.eu
+# imports: http://spinrdf.org/spl
+
+@prefix : <http://learnpad.eu/kpir#> .
+@prefix D54_Design: <http://learnpad.eu/D54_Design#> .
+@prefix afn: <http://jena.hpl.hp.com/ARQ/function#> .
+@prefix arg: <http://spinrdf.org/arg#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix kpi_models_testdata: <http://learnpad.eu/kpi_models_testdata#> .
+@prefix nco: <http://ikm-group.ch/archiMEO/nco#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix smf: <http://topbraid.org/sparqlmotionfunctions#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix transfer: <http://learnpad.eu/transfer#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xwiki: <http://www.xwiki.org/xwiki/bin/view/Main/WebHome#> .
+
+<http://ikm-group.ch/archiMEO/kpi#KPI>
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object <http://learnpad.eu#PerformanceValue> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "minScore"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "organisationalUnit"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:groupBy (
+                    [
+                      sp:varName "organisationalUnit"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "kpi"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:resultVariables (
+                    [
+                      sp:varName "organisationalUnit"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "kpi"^^xsd:string ;
+                    ]
+                    [
+                      sp:expression [
+                          rdf:type sp:Min ;
+                          sp:expression [
+                              sp:varName "score"^^xsd:string ;
+                            ] ;
+                        ] ;
+                      sp:varName "minScore"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object [
+                          sp:varName "score"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#performanceValueHasScore> ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "businessActor"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object <http://ikm-group.ch/archiMEO/kpi#KPI> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      rdf:type sp:Optional ;
+                      sp:elements (
+                          [
+                            sp:object [
+                                sp:varName "role"^^xsd:string ;
+                              ] ;
+                            sp:predicate <http://ikm-group.ch/archiMEO/omm#performerHasRole> ;
+                            sp:subject [
+                                sp:varName "businessActor"^^xsd:string ;
+                              ] ;
+                          ]
+                          [
+                            sp:object [
+                                sp:varName "organisationalUnit"^^xsd:string ;
+                              ] ;
+                            sp:predicate <http://learnpad.eu#roleIsCastedByOrgUnit> ;
+                            sp:subject [
+                                sp:varName "role"^^xsd:string ;
+                              ] ;
+                          ]
+                          [
+                            sp:object [
+                                sp:varName "organisationalUnitName"^^xsd:string ;
+                              ] ;
+                            sp:predicate rdfs:label ;
+                            sp:subject [
+                                sp:varName "organisationalUnit"^^xsd:string ;
+                              ] ;
+                          ]
+                        ) ;
+                    ]
+                    [
+                      rdf:type sp:Optional ;
+                      sp:elements (
+                          [
+                            sp:object [
+                                sp:varName "businessActor"^^xsd:string ;
+                              ] ;
+                            sp:predicate <http://ikm-group.ch/archiMEO/emo#performerRepresentsPerson> ;
+                            sp:subject [
+                                sp:varName "performer"^^xsd:string ;
+                              ] ;
+                          ]
+                          [
+                            sp:object [
+                                sp:varName "role"^^xsd:string ;
+                              ] ;
+                            sp:predicate <http://ikm-group.ch/archiMEO/omm#performerHasRole> ;
+                            sp:subject [
+                                sp:varName "performer"^^xsd:string ;
+                              ] ;
+                          ]
+                          [
+                            sp:object [
+                                sp:varName "organisationalUnit"^^xsd:string ;
+                              ] ;
+                            sp:predicate <http://learnpad.eu#roleIsCastedByOrgUnit> ;
+                            sp:subject [
+                                sp:varName "role"^^xsd:string ;
+                              ] ;
+                          ]
+                        ) ;
+                    ]
+                    [
+                      rdf:type sp:Filter ;
+                      sp:expression [
+                          rdf:type sp:bound ;
+                          sp:arg1 [
+                              sp:varName "organisationalUnit"^^xsd:string ;
+                            ] ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    rdf:type fn:concat ;
+                    sp:arg1 "http://learnpad.eu/exec#" ;
+                    sp:arg2 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "kpi"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg3 "_" ;
+                    sp:arg4 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "organisationalUnit"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg5 "_value" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "4 Calculate score of organisational units based on minimum score of individuals assigned to organisational unit"^^xsd:string ;
+    ] ;
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object <http://learnpad.eu#PerformanceValue> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "simScore"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "person"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueCreationTimestamp> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:limit "1"^^xsd:long ;
+                sp:orderBy (
+                    [
+                      rdf:type sp:Desc ;
+                      sp:expression [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+                sp:resultVariables (
+                    [
+                      sp:varName "person"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "simScore"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "timestamp"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object <http://learnpad.eu#BPSimulationScore> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "simScore"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#hasSimulationScore> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreCreatedAt> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "person"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreOfPerformer> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            sp:object <http://ikm-group.ch/archiMEO/kpi#KPI> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object "business process score per simulation and user"^^xsd:string ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    rdf:type fn:concat ;
+                    sp:arg1 "http://learnpad.eu/exec#" ;
+                    sp:arg2 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "kpi"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg3 "_" ;
+                    sp:arg4 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "person"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg5 "_" ;
+                    sp:arg6 [
+                        sp:varName "timestamp"^^xsd:string ;
+                      ] ;
+                    sp:arg7 "_value" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:now ;
+              ] ;
+            sp:variable [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object <http://learnpad.eu#PerformanceValue> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "valueInstance"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "2 Rule for: \"process simulation score of user\""^^xsd:string ;
+    ] ;
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object <http://learnpad.eu#PerformanceValue> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "simScore"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "person"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueCreationTimestamp> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:limit "1"^^xsd:long ;
+                sp:orderBy (
+                    [
+                      rdf:type sp:Desc ;
+                      sp:expression [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+                sp:resultVariables (
+                    [
+                      sp:varName "person"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "simScore"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "timestamp"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object <http://learnpad.eu#GlobalSimulationScore> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "simScore"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#hasSimulationScore> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreCreatedAt> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "person"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreOfPerformer> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            sp:object <http://ikm-group.ch/archiMEO/kpi#KPI> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object "global score per simulation and user"^^xsd:string ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    rdf:type fn:concat ;
+                    sp:arg1 "http://learnpad.eu/exec#" ;
+                    sp:arg2 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "kpi"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg3 "_" ;
+                    sp:arg4 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "person"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg5 "_" ;
+                    sp:arg6 [
+                        sp:varName "timestamp"^^xsd:string ;
+                      ] ;
+                    sp:arg7 "_value" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:now ;
+              ] ;
+            sp:variable [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object <http://learnpad.eu#PerformanceValue> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "valueInstance"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "2 Rule for: \"global simulation score of user\""^^xsd:string ;
+    ] ;
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object <http://learnpad.eu#PerformanceValue> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "simScore"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "person"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueCreationTimestamp> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:limit "1"^^xsd:long ;
+                sp:orderBy (
+                    [
+                      rdf:type sp:Desc ;
+                      sp:expression [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+                sp:resultVariables (
+                    [
+                      sp:varName "person"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "simScore"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "timestamp"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object <http://learnpad.eu#SimulationSessionScore> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "simScore"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#hasSimulationScore> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreCreatedAt> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "person"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#simulationScoreOfPerformer> ;
+                      sp:subject [
+                          sp:varName "pbProcessScore"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            sp:object <http://ikm-group.ch/archiMEO/kpi#KPI> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object "session score per simulation and user"^^xsd:string ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    rdf:type fn:concat ;
+                    sp:arg1 "http://learnpad.eu/exec#" ;
+                    sp:arg2 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "kpi"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg3 "_" ;
+                    sp:arg4 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "person"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg5 "_value" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:now ;
+              ] ;
+            sp:variable [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object <http://learnpad.eu#PerformanceValue> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "valueInstance"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "2 Rule for: \"session simulation score of user\""^^xsd:string ;
+    ] ;
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object <http://learnpad.eu#PerformanceValue> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "totalCount"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "person"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueBelongsToBusinessActor> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueCreationTimestamp> ;
+            sp:subject [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:groupBy (
+                    [
+                      sp:varName "person"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:resultVariables (
+                    [
+                      sp:varName "person"^^xsd:string ;
+                    ]
+                    [
+                      sp:expression [
+                          rdf:type sp:Count ;
+                          sp:expression [
+                              sp:varName "actionHistory"^^xsd:string ;
+                            ] ;
+                        ] ;
+                      sp:varName "totalCount"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object xwiki:ActionHistory ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "actionHistory"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "person"^^xsd:string ;
+                        ] ;
+                      sp:predicate xwiki:user ;
+                      sp:subject [
+                          sp:varName "actionHistory"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:resultVariables (
+                    [
+                      sp:expression [
+                          rdf:type sp:Max ;
+                          sp:expression [
+                              sp:varName "timestamp"^^xsd:string ;
+                            ] ;
+                        ] ;
+                      sp:varName "latestTimestamp"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object xwiki:ActionHistory ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "actionHistory"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "person"^^xsd:string ;
+                        ] ;
+                      sp:predicate xwiki:user ;
+                      sp:subject [
+                          sp:varName "actionHistory"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "timestamp"^^xsd:string ;
+                        ] ;
+                      sp:predicate xwiki:actionTimestamp ;
+                      sp:subject [
+                          sp:varName "actionHistory"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            sp:object <http://ikm-group.ch/archiMEO/kpi#KPI> ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            sp:object "global actions per user"^^xsd:string ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "kpi"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    rdf:type fn:concat ;
+                    sp:arg1 "http://learnpad.eu/exec#" ;
+                    sp:arg2 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "kpi"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg3 "_" ;
+                    sp:arg4 [
+                        rdf:type afn:localname ;
+                        sp:arg1 [
+                            sp:varName "person"^^xsd:string ;
+                          ] ;
+                      ] ;
+                    sp:arg5 "_" ;
+                    sp:arg6 [
+                        sp:varName "latestTimestamp"^^xsd:string ;
+                      ] ;
+                    sp:arg7 "_value" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "valueInstance"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:now ;
+              ] ;
+            sp:variable [
+                sp:varName "creationTimestamp"^^xsd:string ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object <http://learnpad.eu#PerformanceValue> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "valueInstance"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "2 Rule for: \"global actions per user\""^^xsd:string ;
+    ] ;
+  spin:rule [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "score"^^xsd:string ;
+              ] ;
+            sp:predicate <http://learnpad.eu#performanceValueHasScore> ;
+            sp:subject [
+                sp:varName "kpiValue"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:resultVariables (
+                    [
+                      sp:varName "kpiValue"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "actualValue"^^xsd:string ;
+                    ]
+                    [
+                      sp:varName "score"^^xsd:string ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      rdf:type sp:TriplePath ;
+                      sp:object spin:_this ;
+                      sp:path [
+                          rdf:type sp:ModPath ;
+                          sp:modMax -2 ;
+                          sp:modMin 0 ;
+                          sp:subPath rdfs:subClassOf ;
+                        ] ;
+                      sp:subject [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object <http://learnpad.eu#PerformanceValue> ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "actualValue"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://learnpad.eu#performanceValueHasActualValue> ;
+                      sp:subject [
+                          sp:varName "kpiValue"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "greenYellowThreshold"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://ikm-group.ch/archiMEO/kpi#kpiHasGreenYellowThreshold> ;
+                      sp:subject [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "yellowRedThreshold"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://ikm-group.ch/archiMEO/kpi#kpiHasYellowRedThreshold> ;
+                      sp:subject [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "greaterIsBetter"^^xsd:string ;
+                        ] ;
+                      sp:predicate <http://ikm-group.ch/archiMEO/kpi#kpiHasThresholdTypeGreaterIsBetter> ;
+                      sp:subject [
+                          sp:varName "kpi"^^xsd:string ;
+                        ] ;
+                    ]
+                    [
+                      rdf:type sp:Bind ;
+                      sp:expression [
+                          rdf:type sp:if ;
+                          sp:arg1 [
+                              sp:varName "greaterIsBetter"^^xsd:string ;
+                            ] ;
+                          sp:arg2 [
+                              rdf:type sp:if ;
+                              sp:arg1 [
+                                  rdf:type sp:ge ;
+                                  sp:arg1 [
+                                      sp:varName "actualValue"^^xsd:string ;
+                                    ] ;
+                                  sp:arg2 [
+                                      sp:varName "greenYellowThreshold"^^xsd:string ;
+                                    ] ;
+                                ] ;
+                              sp:arg2 3 ;
+                              sp:arg3 [
+                                  rdf:type sp:if ;
+                                  sp:arg1 [
+                                      rdf:type sp:ge ;
+                                      sp:arg1 [
+                                          sp:varName "actualValue"^^xsd:string ;
+                                        ] ;
+                                      sp:arg2 [
+                                          sp:varName "yellowRedThreshold"^^xsd:string ;
+                                        ] ;
+                                    ] ;
+                                  sp:arg2 2 ;
+                                  sp:arg3 1 ;
+                                ] ;
+                            ] ;
+                          sp:arg3 [
+                              rdf:type sp:if ;
+                              sp:arg1 [
+                                  rdf:type sp:le ;
+                                  sp:arg1 [
+                                      sp:varName "actualValue"^^xsd:string ;
+                                    ] ;
+                                  sp:arg2 [
+                                      sp:varName "greenYellowThreshold"^^xsd:string ;
+                                    ] ;
+                                ] ;
+                              sp:arg2 3 ;
+                              sp:arg3 [
+                                  rdf:type sp:if ;
+                                  sp:arg1 [
+                                      rdf:type sp:le ;
+                                      sp:arg1 [
+                                          sp:varName "actualValue"^^xsd:string ;
+                                        ] ;
+                                      sp:arg2 [
+                                          sp:varName "yellowRedThreshold"^^xsd:string ;
+                                        ] ;
+                                    ] ;
+                                  sp:arg2 2 ;
+                                  sp:arg3 1 ;
+                                ] ;
+                            ] ;
+                        ] ;
+                      sp:variable [
+                          sp:varName "score"^^xsd:string ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "3 Calculate score of all KPI's"^^xsd:string ;
+    ] ;
+.
+<http://learnpad.eu/kpir>
+  rdf:type owl:Ontology ;
+  owl:imports <http://learnpad.eu> ;
+  owl:imports <http://spinrdf.org/spl> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.

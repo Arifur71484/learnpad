@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: stringapp
+  name: stringapp
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: stringapp
+    spec:
+      containers:
+      - image: stringapp
+        name: stringapp
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /app/dist/stringapp
+          name: stringapp-claim0
+      restartPolicy: Always
+      volumes:
+      - name: stringapp-claim0
+        persistentVolumeClaim:
+          claimName: stringapp-claim0
+status: {}

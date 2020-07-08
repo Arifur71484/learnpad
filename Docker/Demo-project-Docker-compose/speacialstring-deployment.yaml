@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: speacialstring
+  name: speacialstring
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: speacialstring
+    spec:
+      containers:
+      - image: speacialstring
+        name: speacialstring
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /app/dist/speacialstring
+          name: speacialstring-claim0
+      restartPolicy: Always
+      volumes:
+      - name: speacialstring-claim0
+        persistentVolumeClaim:
+          claimName: speacialstring-claim0
+status: {}

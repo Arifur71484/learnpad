@@ -1,0 +1,162 @@
+version: '3'
+
+
+networks:
+  app-tier:
+    driver: bridge
+
+services: 
+      
+      
+      lp-content-analysis:
+        build: ./stringapp
+        volumes: 
+          - ./lp-content-analysis:/usr/local/service 
+        ports: 
+          - 8080:80  
+     
+         depends_on: 
+         -  lp-platform
+                
+         
+
+      lp-core-platform:
+        build: ./lp-core-platform
+        volumes: 
+          - ./lp-core-platform:/usr/local/service 
+       
+        ports: 
+          - 8080:80
+  
+        depends_on: 
+         -  lp-platform     
+      
+
+        lp-dashboard-kpi:
+        build: ./lp-dashboard-kpi
+        volumes: 
+          - ./lp-dashboard-kpi:/usr/local/service 
+     
+        ports: 
+          - 8080:80
+      
+        depends_on: 
+         -  lp-platform     
+           
+        
+        lp-learning-session-manager:
+        build: ./lp-learning-session-manager
+        volumes: 
+          - ./lp-learning-session-manager:/usr/local/service 
+        
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier
+        depends_on: 
+         -  lp-platform     
+
+
+        lp-model-environment:
+        build: ./lp-model-environment
+        volumes: 
+          - ./lp-model-environment:/usr/local/service 
+       
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier 
+        depends_on: 
+         -  lp-platform    
+
+
+        lp-model-transformer:
+        build: ./lp-model-transformer
+        volumes: 
+          - ./lp-model-transformer:/usr/local/service 
+        
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier
+        depends_on: 
+         -  lp-platform     
+
+
+
+          lp-model-transformer:
+        build: ./lp-model-transformer
+        volumes: 
+          - ./lp-model-transformer:/usr/local/service 
+    
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier
+        depends_on: 
+         -  lp-platform
+
+
+        lp-model-verification:
+        build: ./lp-model-verification
+        volumes: 
+          - ./lp-model-verification:/usr/local/service 
+       
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier
+        depends_on: 
+         -  lp-platform
+
+
+         
+        lp-ontology-recommender:
+        build: ./lp-ontology-recommender
+        volumes: 
+          - ./lp-ontology-recommender:/usr/local/service 
+       
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier
+
+
+       lp-platform:
+         build: ./lp-ontology-recommender
+        volumes: 
+          - ./lp-ontology-recommender:/usr/local/service 
+      
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier    
+
+
+
+        lp-questionnaire-manager:
+          build: ./ lp-questionnaire-manager
+        volumes: 
+          - ./ lp-questionnaire-manager:/usr/local/service 
+      
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier     
+
+
+        lp-simulation-environment:
+           build: ./lp-simulation-environment
+        volumes: 
+          - ./lp-simulation-environment:/usr/local/service 
+        
+        ports: 
+          - 8080:80
+        networks:
+            - app-tier       
+
+     
+
+
+
+    

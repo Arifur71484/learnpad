@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc version="1.2" reference="LPCode.WorkflowButtonsMacro" locale="">
+  <web>LPCode</web>
+  <name>WorkflowButtonsMacro</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1443429310000</creationDate>
+  <parent>LPUI.BaseElementSheet</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1459246589000</date>
+  <contentUpdateDate>1458950916000</contentUpdateDate>
+  <version>1.1</version>
+  <title>WorkflowButtonsMacro</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content/>
+  <object>
+    <name>LPCode.WorkflowButtonsMacro</name>
+    <number>0</number>
+    <className>XWiki.WikiMacroClass</className>
+    <guid>ec625aef-4118-4876-8488-fbcc5faba103</guid>
+    <class>
+      <name>XWiki.WikiMacroClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>9</number>
+        <prettyName>Macro code</prettyName>
+        <rows>20</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <contentDescription>
+        <disabled>0</disabled>
+        <name>contentDescription</name>
+        <number>8</number>
+        <prettyName>Content description (Not applicable for "No content" type)</prettyName>
+        <rows>5</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </contentDescription>
+      <contentType>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>contentType</name>
+        <number>7</number>
+        <prettyName>Macro content type</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator>|</separator>
+        <separators>|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>Optional|Mandatory|No content</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </contentType>
+      <defaultCategory>
+        <disabled>0</disabled>
+        <name>defaultCategory</name>
+        <number>4</number>
+        <prettyName>Default category</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </defaultCategory>
+      <description>
+        <disabled>0</disabled>
+        <name>description</name>
+        <number>3</number>
+        <prettyName>Macro description</prettyName>
+        <rows>5</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </description>
+      <id>
+        <disabled>0</disabled>
+        <name>id</name>
+        <number>1</number>
+        <prettyName>Macro id</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </id>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>2</number>
+        <prettyName>Macro name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <supportsInlineMode>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>supportsInlineMode</name>
+        <number>5</number>
+        <prettyName>Supports inline mode</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </supportsInlineMode>
+      <visibility>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>visibility</name>
+        <number>6</number>
+        <prettyName>Macro visibility</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator>|</separator>
+        <separators>|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>Current User|Current Wiki|Global</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </visibility>
+    </class>
+    <property>
+      <code>{{velocity}}
+#set ($type = $xcontext.macro.params.type)
+#set ($select = "select distinct targetdoc.fullName")
+#set ($from = "from Document as doc, Document as targetdoc, doc.object(LPCode.BaseElementClass) as be, doc.object(LPCode.LinkClass) as link, targetdoc.object(LPCode.BaseElementClass) as targetbe")
+#set ($where = "where doc.id = :id and ( targetbe.type like 'bpmn-event%' or targetbe.type like 'bpmn-gateway%' or targetbe.type like 'bpmn-task%' or targetbe.type like 'bpmn-process%' ) and link.targetmodelsetid = targetbe.modelsetid and link.targetmodelid = targetbe.modelid and link.targetartifactid = targetbe.id")
+#set ($previous =  "link.type = 'incoming'")
+#set ($next =  "link.type = 'outgoing'")
+#set ($queryPrevious = "${select} ${from} ${where} and ${previous}")
+#set ($queryNext = "${select} ${from} ${where} and ${next}")
+#set ($previousFullnames = $services.query.xwql($queryPrevious).bindValue("id", ${doc.id}).execute())
+#set ($nextFullnames = $services.query.xwql($queryNext).bindValue("id", ${doc.id}).execute())
+#set ($previousIcon = $services.icon.render('left'))
+#set ($nextIcon = $services.icon.render('right'))
+#if ( ("$!previousFullnames" != "" &amp;&amp; $previousFullnames.size() &gt; 0) || ("$!nextFullnames" != "" &amp;&amp; $nextFullnames.size() &gt; 0) )
+#### Retreiving LPCode.LinkClass objects with the properties "denomination" and "trigger" set and store
+#### them in two sepatate vectors (with clone)
+  #set ($docLinkObjectVector = $doc.getObjects('LPCode.LinkClass'))
+  #set ($labelledLinkObjectVector = $docLinkObjectVector.clone())
+  #foreach ($linkObject in $docLinkObjectVector)
+   #if ( (!${linkObject.getProperty('denomination').value}) &amp;&amp; (!${linkObject.getProperty('trigger').value}))
+     #set ($foo = $labelledLinkObjectVector.remove($linkObject))
+   #end
+  #end
+##########
+  (% class="panel panel-workflow" %)(((
+    (% class="panel-heading" %)(((
+      ${services.icon.render('random')} ${services.localization.render('LPCode.WorkflowButtonsMacro.title')}
+    )))
+    (% class="panel-body" %)(((
+      (% class="row" %)(((
+        (% class="col-xs-12 col-md-6" %)(((
+        #foreach ($previous in $previousFullnames)
+          #set ($previousReference = $services.model.resolveDocument($previous))
+          #set ($previousDocument = $xwiki.getDocument($previousReference))
+          #set ($previousURL = $previousDocument.URL)
+	  (% class="row" %)(((
+            [[${previousIcon} ${previousDocument.title}&gt;&gt;path:${previousURL}||class="col-xs-12 panel-item"]]
+          )))
+        #end
+        )))
+        (% class="col-xs-12 col-md-6" %)(((
+        #foreach ($next in $nextFullnames)
+          #set ($nextReference = $services.model.resolveDocument($next))
+          #set ($nextDocument = $xwiki.getDocument($nextReference))
+          #set ($nextURL = $nextDocument.URL)
+#################################
+### Retreiving the right "denomination" or "trigger" for each "nextReference"
+	  #set ($asideRender = '')
+          #set ( $foundIt = false )
+          #foreach ($linkObject in $labelledLinkObjectVector)
+            #set ($targetDocument = "$linkObject.getProperty('targetmodelsetid').value.replaceAll('\.', '\\.')" + ".$linkObject.getProperty('targetmodelid').value.replaceAll('\.', '\\.')" + ".$linkObject.getProperty('targetartifactid').value.replaceAll('\.', '\\.')" + ".WebHome")
+            #if ((!$foundIt) &amp;&amp; ("$targetDocument" == "$nextDocument"))
+                 #if ( ${linkObject.getProperty('denomination')} )
+                       #set ( $denomination = ${linkObject.getProperty('denomination').value} )
+                       #if ( !${denomination.isEmpty()} )
+ 	                     #set ( $denominationLabelRender = "${services.localization.render('LPCode.WorkflowButtonsMacro.labelDenominationProperty')}")
+	                     #set ($asideRender = "\\ ($denominationLabelRender **$denomination**) ")
+                       #end 
+                 #end 
+                 #if (${linkObject.getProperty('trigger')})
+                       #set ( $trigger = ${linkObject.getProperty('trigger').value} )
+                       #if ( !${trigger.isEmpty()} )
+ 	                     #set ( $triggerLabelRender = "${services.localization.render('LPCode.WorkflowButtonsMacro.labelTriggerProperty')}")
+	                     #set ($asideRender = "${asideRender}\\ ($triggerLabelRender **$trigger**) ")
+                       #end 
+                 #end
+                 #set ( $foundIt = true )
+            #end
+          #end
+#################################
+          (% class="row" %)(((
+            [[${nextDocument.title}${asideRender} ${nextIcon}&gt;&gt;path:${nextURL}||class="col-xs-12 panel-item text-right"]]
+          )))
+        #end
+        )))
+      )))
+    )))
+  )))
+  #end
+{{/velocity}}</code>
+    </property>
+    <property>
+      <contentDescription/>
+    </property>
+    <property>
+      <contentType>No content</contentType>
+    </property>
+    <property>
+      <defaultCategory/>
+    </property>
+    <property>
+      <description/>
+    </property>
+    <property>
+      <id>workflowbuttons</id>
+    </property>
+    <property>
+      <name>Workflow buttons</name>
+    </property>
+    <property>
+      <supportsInlineMode>0</supportsInlineMode>
+    </property>
+    <property>
+      <visibility>Current Wiki</visibility>
+    </property>
+  </object>
+</xwikidoc>

@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+    wordpress:
+        image: wordpress
+        ports:
+        - 9090:80
+        environment: 
+          WORDPRESS_DB_PASSWORD: abc123
+
+            
+    mysql:
+       image: mysql:latest
+       environment: 
+          MYSQL_ROOT_PASSWORD:  abc123          

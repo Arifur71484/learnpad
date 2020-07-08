@@ -1,0 +1,29 @@
+out/
+
+# Vim
+*.swp
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.classpath
+target/
+target-eclipse/
+/gulyxout/
+/pom.xml
+/.apt_generated/
+lp-dashboard-kpi/nb-configuration.xml
+/lp-dashboard-kpi/lp-dash-bridge/nbproject/
+lp-dashboard-kpi/lp-dash-adoxx-cockpit/logs/
+
+# lola
+lola-2.0/
