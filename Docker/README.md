@@ -39,4 +39,5 @@ DockerFile :
 3. For running multiple docker container we can use docker-compose file at a same time .
 4. To convert the docker container into kubernets pods first install the Kompose tools .
 5. Then convert the docker container into kubernets pods by using kompose compand .
-6. we can use minikube or openshift cloud to deploy the kubernets pods or other cloud platform for deploy the kubernets pods .
+6.for testing purpose we can deploy the pods and container in local minikube or minishift.
+7. we can use minikube or openshift cloud to deploy the kubernets pods or other cloud platform for deploy the kubernets pods .
